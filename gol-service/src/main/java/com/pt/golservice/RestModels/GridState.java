@@ -6,7 +6,7 @@ public class GridState
 {
     private int rows;
     private int cols;
-    private List<List<Byte>> data;
+    private List<List<Integer>> activeCells;
 
     public int getCols()
     {
@@ -28,14 +28,14 @@ public class GridState
         this.rows = rows;
     }
 
-    public List<List<Byte>> getData()
+    public List<List<Integer>> getActiveCells()
     {
-        return data;
+        return activeCells;
     }
 
-    public void setData(List<List<Byte>> data)
+    public void setActiveCells(List<List<Integer>> activeCells)
     {
-        this.data = data;
+        this.activeCells = activeCells;
     }
 
     @Override
@@ -44,7 +44,7 @@ public class GridState
         StringBuilder sb = new StringBuilder();
         sb.append("rows=").append(rows).append("\n");
         sb.append("cols=").append(cols).append("\n");
-        for (var row : data) {
+        for (var row : activeCells) {
             sb.append("[").append(row.get(0))
               .append(",").append(row.get(1)).append("]\n");
         }

@@ -29,15 +29,18 @@
     align-content: center;
     width: var(--cell-size);
     height: var(--cell-size);
-    background-color: var(--cell-color);
+}
+
+.grid-cell-activated {
+    background-color: var(--cell-color-activated);
+}
+
+.grid-cell-deactivated {
+    background-color: var(--cell-color-deactivated);
 }
 
 .grid-cell:hover {
-    background-color: grey;
-}
-
-.grid-control-panel {
-
+    background-color: orange;
 }
 
 

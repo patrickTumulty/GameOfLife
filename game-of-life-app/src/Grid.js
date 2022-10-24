@@ -46,16 +46,38 @@ export default class Grid extends Component {
                 <div>
                     <button className="gs-button" onClick={() => this.clearGrid()}>Clear</button>
                     <button className="gs-button" onClick={() => {
-                        GOLClientProvider.getClient().getNextGeneration(this.state.grid);
+                        let newGrid = GOLClientProvider.getClient().getNextGeneration(this.state.grid);
+                        this.setState({
+                            grid: this.setActiveGridCells(newGrid.activeCells)
+                        });
                     }}>Start</button>
                 </div>
             </div>
         )
     }
 
+    /**
+     * Clears the current grid state and applies the given activated cells.
+     *
+     * @param activatedCells List of active cells coordinates. activatedCells is an N by 2 list where index 0 = row and
+     *                       1 = column.
+     * @returns {Array<Array<Boolean>>}
+     */
+    setActiveGridCells(activatedCells) {
+        for (let i = 0; i < this.state.grid.length; i++) {
+            for (let j = 0; j < this.state.grid[i].length; j++) {
+                this.state.grid[i][j] = false;
+            }
+        }
+        for (let i = 0; i < activatedCells.length; i++) {
+            this.state.grid[activatedCells[i][0]][activatedCells[i][1]] = true;
+        }
+        return this.state.grid;
+    }
+
     clearGrid() {
         this.setState({
-            grid: this.initGrid()
+            grid: this.setActiveGridCells([])
         });
     }
 
@@ -64,20 +86,15 @@ export default class Grid extends Component {
         for (let row = 0; row < this.rows; row++) {
             gridCells.push([]);
             for (let col = 0; col < this.cols; col++) {
-                const style = {
-                    backgroundColor: this.state.grid[row][col] ?
-                        getComputedStyle(this.r).getPropertyValue('--cell-color-activated') :
-                        getComputedStyle(this.r).getPropertyValue('--cell-color-deactivated')
-                }
-                gridCells[row].push(this.constructGridCell(style, row, col));
+
+                gridCells[row].push(this.constructGridCell(row, col));
             }
         }
         return gridCells;
     }
 
-    constructGridCell(style, row, col) {
-        return <div style={style}
-                    className="grid-cell"
+    constructGridCell(row, col) {
+        return <div className={`grid-cell ${this.state.grid[row][col] ? "grid-cell-activated" : "grid-cell-deactivated"}`}
                     onClick={() => this.toggleGridCell(row, col)}
                     onMouseEnter={(event) => {
                         if (event.buttons === 1 && !this.state.grid[row][col]) {

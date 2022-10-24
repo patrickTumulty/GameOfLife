@@ -1,4 +1,3 @@
-
 import RESTClient from "./RESTClient";
 
 export default class GameOfLifeClient
@@ -9,13 +8,11 @@ export default class GameOfLifeClient
     }
 
     #grid2Json(grid) {
-        let json = {
+        return {
             rows: grid.length,
             cols: grid[0].length,
-            data: this.#getActiveCells(grid)
+            activeCells: this.#getActiveCells(grid)
         };
-        console.log(json);
-        return json;
     }
 
     #getActiveCells(grid) {
@@ -27,15 +24,11 @@ export default class GameOfLifeClient
                 }
             }
         }
-
         return activeCells;
     }
 
     getNextGeneration(grid) {
         let response = this.client.post("/get-next-generation", this.#grid2Json(grid));
-        console.log(response.responseText);
+        return JSON.parse(response.responseText);
     }
-
-
-
 }

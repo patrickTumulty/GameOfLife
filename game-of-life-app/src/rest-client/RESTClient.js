@@ -7,7 +7,7 @@ export default class RESTClient
     }
 
     post(url, json) {
-        let returnedData = $.ajax({
+        return $.ajax({
             type: "POST",
             url: `${this.remote}${url}`,
             cache: false,
@@ -16,9 +16,8 @@ export default class RESTClient
             contentType: "application/json;charset=UTF-8",
             async: false,
             success: function (data) {
-                console.log("Success! " + data);
+                // TODO consider adding something here
             }
         });
-        return returnedData;
     }
 }

@@ -16,10 +16,9 @@ public class GameOfLifeService
     }
 
     @PostMapping("/get-next-generation")
-    public GridState simpleRequest(@RequestBody GridState object)
+    public GridState simpleRequest(@RequestBody GridState gridState)
     {
-        System.out.println(object);
-
-        return object;
+        GameOfLifeProcessor gameOfLifeProcessor = new GameOfLifeProcessor();
+        return gameOfLifeProcessor.getNextGeneration(gridState);
     }
 }
