@@ -2,7 +2,6 @@
 import './css/Grid.css'
 import './css/GlobalStyles.css'
 import {Component} from "react";
-import GameOfLifeClient from "./rest-client/GameOfLifeClient";
 import GOLClientProvider from "./rest-client/GOLClientProvider";
 
 
