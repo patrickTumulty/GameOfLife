@@ -18,6 +18,11 @@ public class GameOfLifeService
     @PostMapping("/get-next-generation")
     public GridState simpleRequest(@RequestBody GridState gridState)
     {
+        if (gridState.getActiveCells().isEmpty())
+        {
+            return gridState;
+        }
+
         GameOfLifeProcessor gameOfLifeProcessor = new GameOfLifeProcessor();
         return gameOfLifeProcessor.getNextGeneration(gridState);
     }
