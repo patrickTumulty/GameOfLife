@@ -14,7 +14,7 @@
     grid-auto-flow: row;
     grid-gap: 0;
     align-self: flex-start;
-    outline: whitesmoke solid 2px;
+    outline: #FFD92B solid 2px;
 }
 
 .grid-container {
@@ -38,6 +38,8 @@
 
 .grid-cell-activated {
     background-color: var(--cell-color-activated);
+    box-shadow: 0 0 4px #0ff;
+    z-index: 0;
 }
 
 .grid-cell-deactivated {
