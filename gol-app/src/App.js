@@ -1,12 +1,12 @@
 
 import './css/App.css';
-import Grid from "./Grid";
+import GameOfLife from "./GameOfLife";
 
 
 function App() {
     return (
         <div className="App">
-            <Grid cols={70} rows={50}/>
+            <GameOfLife cols={70} rows={50}/>
         </div>
     );
 }

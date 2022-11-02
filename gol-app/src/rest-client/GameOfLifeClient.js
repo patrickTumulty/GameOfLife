@@ -31,4 +31,9 @@ export default class GameOfLifeClient
         let response = this.client.post("/get-next-generation", this.#grid2Json(grid));
         return JSON.parse(response.responseText);
     }
+
+    getNextNGenerations(n, grid) {
+        let response = this.client.post(`/get-next-n-generations/${n}`, this.#grid2Json(grid));
+        return JSON.parse(response.responseText);
+    }
 }

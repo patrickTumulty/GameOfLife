@@ -1,22 +1,18 @@
 package com.pt.golservice;
 
 import com.pt.golservice.RestModels.GridState;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*") // TODO look up what this does
 public class GameOfLifeService
 {
-    public GameOfLifeService()
-    {
-
-    }
-
     @PostMapping("/get-next-generation")
-    public GridState simpleRequest(@RequestBody GridState gridState)
+    public GridState getNextGeneration(@RequestBody GridState gridState)
     {
         if (gridState.getActiveCells().isEmpty())
         {
